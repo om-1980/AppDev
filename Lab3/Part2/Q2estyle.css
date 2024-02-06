@@ -1,0 +1,14 @@
+h1, h2 {
+    padding: 0.5em;
+    border-style: groove;
+    margin: 0.5em;
+}
+
+.greenMove {
+    color: green;
+    position: relative;
+    top: 25px;
+    left: 15px;
+}
+  
+  

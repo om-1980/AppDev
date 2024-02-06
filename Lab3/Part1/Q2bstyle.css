@@ -1,0 +1,21 @@
+/* Styles the <h1> elements */
+h1 {
+    color: green; /* Sets the color to green */
+    font-size: 22pt; /* Sets the font size to 22pt */
+    font-family: "Times New Roman"; /* Sets the font family to Times New Roman */
+}
+  
+/* Styles the <h2> elements */
+h2 {
+    color: green; /* Sets the color to green */
+    font-size: 22pt; /* Sets the font size to 22pt */
+    font-family: "Times New Roman"; /* Sets the font family to Times New Roman */
+}
+  
+/* Styles the paragraph */
+p {
+    color: black; /* Sets the color to black */
+    font-size: 12pt; /* Sets the font size to 12pt */
+    font-family: "Times New Roman"; /* Sets the font family to Times New Roman */
+}
+  
