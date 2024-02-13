@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- Define element types -->
+  <xs:element name="bank">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="accounts" type="accountsType"/>
+        <xs:element name="customers" type="customersType"/>
+        <xs:element name="customer_accounts" type="customerAccountsType"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- Define complex types -->
+  <xs:complexType name="accountsType">
+    <xs:sequence>
+      <xs:element name="savings_accounts" type="savingsAccountsType"/>
+      <xs:element name="checking_accounts" type="checkingAccountsType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="savingsAccountsType">
+    <xs:sequence>
+      <xs:element name="savings_account" type="savingsAccountType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="checkingAccountsType">
+    <xs:sequence>
+      <xs:element name="checking_account" type="checkingAccountType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="customersType">
+    <xs:sequence>
+      <xs:element name="customer" type="customerType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="customerType">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="address" type="xs:string"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="customerAccountsType">
+    <xs:sequence>
+      <xs:element name="customer_account" type="customerAccountType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Define attribute types -->
+  <xs:complexType name="savingsAccountType">
+    <xs:sequence>
+      <xs:element name="balance" type="xs:decimal"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+    <xs:attribute name="interest" type="xs:decimal" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="checkingAccountType">
+    <xs:sequence>
+      <xs:element name="balance" type="xs:decimal"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="customerAccountType">
+    <xs:attribute name="c_id" type="xs:string" use="required"/>
+    <xs:attribute name="ac_id" type="xs:string" use="required"/>
+  </xs:complexType>
+
+</xs:schema>
