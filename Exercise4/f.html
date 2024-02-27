@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scientific Calculator</title>
+  <style>
+    input[type="button"] {
+      width: 50px;
+      height: 50px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Scientific Calculator</h2>
+  <input type="text" id="display" disabled><br>
+  <input type="button" value="7" onclick="appendToDisplay('7')">
+  <input type="button" value="8" onclick="appendToDisplay('8')">
+  <input type="button" value="9" onclick="appendToDisplay('9')">
+  <input type="button" value="/" onclick="appendToDisplay('/')"><br>
+  <input type="button" value="4" onclick="appendToDisplay('4')">
+  <input type="button" value="5" onclick="appendToDisplay('5')">
+  <input type="button" value="6" onclick="appendToDisplay('6')">
+  <input type="button" value="*" onclick="appendToDisplay('*')"><br>
+  <input type="button" value="1" onclick="appendToDisplay('1')">
+  <input type="button" value="2" onclick="appendToDisplay('2')">
+  <input type="button" value="3" onclick="appendToDisplay('3')">
+  <input type="button" value="-" onclick="appendToDisplay('-')"><br>
+  <input type="button" value="0" onclick="appendToDisplay('0')">
+  <input type="button" value="." onclick="appendToDisplay('.')">
+  <input type="button" value="=" onclick="calculate()">
+  <input type="button" value="+" onclick="appendToDisplay('+')"><br>
+  <input type="button" value="C" onclick="clearDisplay()">
+  <input type="button" value="√" onclick="squareRoot()">
+  <input type="button" value="x²" onclick="square()">
+  <input type="button" value="sin" onclick="trigFunction('sin')"><br>
+  <input type="button" value="cos" onclick="trigFunction('cos')">
+  <input type="button" value="tan" onclick="trigFunction('tan')">
+</body>
+<script>
+  function appendToDisplay(value) {
+    document.getElementById('display').value += value;
+  }
+
+  function calculate() {
+    let expression = document.getElementById('display').value;
+    try {
+      let result = eval(expression);
+      document.getElementById('display').value = result;
+    } catch (error) {
+      alert('Invalid expression');
+    }
+  }
+
+  function clearDisplay() {
+    document.getElementById('display').value = '';
+  }
+
+  function squareRoot() {
+    let number = parseFloat(document.getElementById('display').value);
+    if (!isNaN(number)) {
+      document.getElementById('display').value = Math.sqrt(number);
+    } else {
+      alert('Invalid input for square root');
+    }
+  }
+
+  function square() {
+    let number = parseFloat(document.getElementById('display').value);
+    if (!isNaN(number)) {
+      document.getElementById('display').value = Math.pow(number, 2);
+    } else {
+      alert('Invalid input for square');
+    }
+  }
+
+  function trigFunction(func) {
+    let number = parseFloat(document.getElementById('display').value);
+    if (!isNaN(number)) {
+      let result;
+      switch(func) {
+        case 'sin':
+          result = Math.sin(number);
+          break;
+        case 'cos':
+          result = Math.cos(number);
+          break;
+        case 'tan':
+          result = Math.tan(number);
+          break;
+      }
+      document.getElementById('display').value = result;
+    } else {
+      alert('Invalid input for trigonometric function');
+    }
+  }
+</script>
+</html>
