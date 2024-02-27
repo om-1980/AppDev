@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prime Number Finder</title>
+</head>
+<body>
+  <h2>Prime Numbers Between 1 and 1000</h2>
+  <textarea id="primeNumbers" rows="20" cols="50"></textarea>
+  <script>
+    // Function to check if a number is prime
+    function isPrime(number) {
+      if (number < 2) {
+        return false;
+      }
+      for (let i = 2; i <= Math.sqrt(number); i++) {
+        if (number % i === 0) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    // Function to find prime numbers between 1 and 1000
+    function findPrimes() {
+      let primeNumbers = [];
+      let testsPerformed = 0;
+      for (let i = 2; i <= 1000; i++) {
+        if (isPrime(i)) {
+          primeNumbers.push(i);
+          testsPerformed++;
+        }
+      }
+      return { primeNumbers, testsPerformed };
+    }
+
+    // Function to display the results in the textarea
+    function displayResults() {
+      let result = findPrimes();
+      let primeNumbersTextarea = document.getElementById('primeNumbers');
+      primeNumbersTextarea.value = "Prime Numbers Between 1 and 1000:\n" + result.primeNumbers.join(', ') +
+        "\n\nTests Performed: " + result.testsPerformed;
+    }
+
+    // Call the function to display results when the page loads
+    displayResults();
+  </script>
+</body>
+</html>
