@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Volume of Sphere and Area of Circle Calculator</title>
+  <script>
+    // Function to calculate the volume of a sphere
+    function Sphere_Volume(radius) {
+      return (4/3) * Math.PI * Math.pow(radius, 3);
+    }
+
+    // Function to calculate the area of a circle
+    function Circle_Area(radius) {
+      return Math.PI * Math.pow(radius, 2);
+    }
+
+    // Function to handle button click
+    function calculate() {
+      // Get the radius input value from the text field
+      var radius = parseFloat(document.getElementById('radius').value);
+
+      // Check if the input is a valid number
+      if (!isNaN(radius)) {
+        // Calculate and display the volume of the sphere
+        var volume = Sphere_Volume(radius);
+        document.getElementById('volume').innerText = "Volume of Sphere: " + volume.toFixed(2);
+
+        // Calculate and display the area of the circle
+        var area = Circle_Area(radius);
+        document.getElementById('area').innerText = "Area of Circle: " + area.toFixed(2);
+      } else {
+        // Display an error message if the input is not a valid number
+        alert("Please enter a valid number for the radius.");
+      }
+    }
+  </script>
+</head>
+<body>
+  <h2>Volume of Sphere and Area of Circle Calculator</h2>
+  <form>
+    <label for="radius">Enter the radius:</label>
+    <input type="text" id="radius" name="radius">
+    <button type="button" onclick="calculate()">Calculate</button>
+  </form>
+  <div id="volume"></div>
+  <div id="area"></div>
+</body>
+</html>
