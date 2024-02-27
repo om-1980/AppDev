@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integer Power Calculator</title>
+  <script>
+    // Function to calculate integer power using a loop
+    function Integer_Power(base, exponent) {
+      let result = 1;
+      // Handling negative exponents
+      if (exponent < 0) {
+        base = 1 / base;
+        exponent = -exponent;
+      }
+      for (let i = 0; i < exponent; i++) {
+        result *= base;
+      }
+      return result;
+    }
+
+    // Function to handle form submission
+    function calculatePower() {
+      // Get the values of base and exponent from the form
+      var base = parseInt(document.getElementById('base').value);
+      var exponent = parseInt(document.getElementById('exponent').value);
+
+      // Check if the inputs are valid integers
+      if (!isNaN(base) && !isNaN(exponent)) {
+        // Calculate the result using the Integer_Power function
+        var result = Integer_Power(base, exponent);
+        // Display the result
+        document.getElementById('result').innerText = "Result: " + result;
+      } else {
+        // Display an error message if any input is not a valid integer
+        alert("Please enter valid integers for the base and exponent.");
+      }
+    }
+  </script>
+</head>
+<body>
+  <h2>Integer Power Calculator</h2>
+  <form>
+    <label for="base">Enter base:</label>
+    <input type="text" id="base" name="base">
+    <label for="exponent">Enter exponent:</label>
+    <input type="text" id="exponent" name="exponent"><br>
+    <button type="button" onclick="calculatePower()">Calculate Power</button>
+  </form>
+  <div id="result"></div>
+</body>
+</html>
