@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Distance Between Two Points Calculator</title>
+  <script>
+    // Function to calculate the distance between two points
+    function Compute_Distance(x1, y1, x2, y2) {
+      return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    }
+
+    // Function to handle form submission
+    function calculateDistance() {
+      // Get the coordinates of the two points from the form
+      var x1 = parseFloat(document.getElementById('x1').value);
+      var y1 = parseFloat(document.getElementById('y1').value);
+      var x2 = parseFloat(document.getElementById('x2').value);
+      var y2 = parseFloat(document.getElementById('y2').value);
+
+      // Check if the inputs are valid numbers
+      if (!isNaN(x1) && !isNaN(y1) && !isNaN(x2) && !isNaN(y2)) {
+        // Calculate the distance between the two points
+        var distance = Compute_Distance(x1, y1, x2, y2);
+        // Display the result
+        document.getElementById('result').innerText = "Distance between the points: " + distance.toFixed(2);
+      } else {
+        // Display an error message if any input is not a valid number
+        alert("Please enter valid numbers for the coordinates.");
+      }
+    }
+  </script>
+</head>
+<body>
+  <h2>Distance Between Two Points Calculator</h2>
+  <form>
+    <label for="x1">Enter x1:</label>
+    <input type="text" id="x1" name="x1">
+    <label for="y1">Enter y1:</label>
+    <input type="text" id="y1" name="y1"><br>
+    <label for="x2">Enter x2:</label>
+    <input type="text" id="x2" name="x2">
+    <label for="y2">Enter y2:</label>
+    <input type="text" id="y2" name="y2"><br>
+    <button type="button" onclick="calculateDistance()">Calculate Distance</button>
+  </form>
+  <div id="result"></div>
+</body>
+</html>
