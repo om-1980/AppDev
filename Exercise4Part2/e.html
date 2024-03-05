@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Word Length Table</title>
+</head>
+<body>
+<h1>Word Length Table</h1>
+
+<label for="textInput">Enter text:</label><br>
+<textarea id="textInput" rows="5" cols="50"></textarea><br>
+<button onclick="countWordLengths()">Generate Table</button>
+
+<div id="tableContainer"></div>
+
+<script>
+function countWordLengths() {
+  const text = document.getElementById("textInput").value;
+  const words = text.match(/\b\w+\b/g) || [];
+
+  const wordLengthCounts = {};
+
+  for (let i = 0; i < words.length; i++) {
+    const wordLength = words[i].length;
+    if (wordLengthCounts[wordLength] === undefined) {
+      wordLengthCounts[wordLength] = 1;
+    } else {
+      wordLengthCounts[wordLength]++;
+    }
+  }
+
+  const tableContainer = document.getElementById("tableContainer");
+  tableContainer.innerHTML = "<h2>Word Length Table</h2>";
+  tableContainer.innerHTML += "<table><tr><th>Word Length</th><th>Occurrences</th></tr>";
+
+  for (let length in wordLengthCounts) {
+    tableContainer.innerHTML += `<tr><td>${length}</td><td>${wordLengthCounts[length]}</td></tr>`;
+  }
+
+  tableContainer.innerHTML += "</table>";
+}
+</script>
+
+</body>
+</html>
