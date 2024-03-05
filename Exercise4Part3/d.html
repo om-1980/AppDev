@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greeting Based on Time</title>
+</head>
+<body>
+<h1>Greeting Based on Time</h1>
+
+<p id="timeMessage"></p>
+
+<script>
+function displayTimeMessage() {
+  const currentTime = new Date();
+  const currentHour = currentTime.getHours();
+
+  let greeting;
+
+  if (currentHour >= 5 && currentHour < 12) {
+    greeting = "Good Morning";
+  } else if (currentHour >= 12 && currentHour < 17) {
+    greeting = "Good Afternoon";
+  } else if (currentHour >= 17 && currentHour < 20) {
+    greeting = "Good Evening";
+  } else {
+    greeting = "Good Night";
+  }
+
+  const timeMessage = document.getElementById("timeMessage");
+  timeMessage.textContent = `${greeting}! It's currently ${formatTime(currentTime)}.`;
+}
+
+function formatTime(time) {
+  let hours = time.getHours();
+  let minutes = time.getMinutes();
+
+  if (hours < 10) {
+    hours = '0' + hours;
+  }
+
+  if (minutes < 10) {
+    minutes = '0' + minutes;
+  }
+
+  return hours + ':' + minutes;
+}
+
+// Display the time message initially
+displayTimeMessage();
+
+// Update the time message every second
+setInterval(displayTimeMessage, 1000);
+</script>
+
+</body>
+</html>
