@@ -1,16 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>String Manipulation Operations</title>
-</head>
-<body>
-<h1>String Manipulation Operations</h1>
-
-<script>
-// JavaScript program for string manipulation operations
-
 // Sample input string
 const inputString = "JavaScript is a powerful programming language. It is widely used for web development.";
 
@@ -68,7 +55,3 @@ function splitString(string, separator) {
 console.log("Last Index of 'is':", lastIndexOfSubstr(inputString, "is"));
 console.log("Extract Substring (index 5, length 10):", extractSubstring(inputString, 5, 10));
 console.log("Split String (separator: ' '):", splitString(inputString, ' '));
-</script>
-
-</body>
-</html>
