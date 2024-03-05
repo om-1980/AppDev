@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>String Sorting</title>
+</head>
+<body>
+<h1>String Sorting</h1>
+
+<label for="numStrings">Enter the number of strings:</label>
+<input type="number" id="numStrings">
+<button onclick="getStrings()">OK</button>
+
+<div id="stringInput" style="display: none;">
+  <div id="inputFields"></div>
+  <button onclick="sortStrings()">Sort and Display</button>
+</div>
+
+<p id="sortedStrings"></p>
+<p id="startsWithE"></p>
+
+<script>
+function getStrings() {
+  const numStrings = parseInt(document.getElementById("numStrings").value);
+  const inputFieldsDiv = document.getElementById("inputFields");
+  inputFieldsDiv.innerHTML = '';
+
+  for (let i = 1; i <= numStrings; i++) {
+    const inputField = document.createElement("input");
+    inputField.type = "text";
+    inputField.placeholder = `Enter string ${i}`;
+    inputFieldsDiv.appendChild(inputField);
+  }
+
+  document.getElementById("stringInput").style.display = "block";
+}
+
+function sortStrings() {
+  const inputFields = document.getElementById("inputFields").querySelectorAll("input");
+  const strings = [];
+
+  inputFields.forEach(inputField => {
+    if (inputField.value.trim() !== "") {
+      strings.push(inputField.value.trim());
+    }
+  });
+
+  strings.sort();
+
+  const sortedStrings = document.getElementById("sortedStrings");
+  sortedStrings.textContent = "Sorted Strings: " + strings.join(", ");
+
+  const startsWithE = document.getElementById("startsWithE");
+  const eStrings = strings.filter(str => str.toLowerCase().startsWith('e'));
+  if (eStrings.length > 0) {
+    startsWithE.textContent = "Strings starting with 'e' or 'E': " + eStrings.join(", ");
+  } else {
+    startsWithE.textContent = "No strings start with 'e' or 'E'.";
+  }
+}
+</script>
+
+</body>
+</html>
