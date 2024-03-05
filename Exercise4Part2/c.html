@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Binary Search</title>
+</head>
+<body>
+<h1>Binary Search</h1>
+
+<label for="arraySize">Enter the number of elements:</label>
+<input type="number" id="arraySize">
+<button onclick="createArray()">OK</button>
+
+<div id="arrayInput" style="display: none;">
+  <label for="searchKey">Enter the search key:</label>
+  <input type="number" id="searchKey">
+  <button onclick="performBinarySearch()">Search</button>
+</div>
+
+<p id="searchResult"></p>
+
+<script>
+let array = [];
+
+function createArray() {
+  const size = parseInt(document.getElementById("arraySize").value);
+  array = [];
+  for (let i = 0; i < size; i++) {
+    array.push(parseInt(prompt(`Enter element ${i+1}:`)));
+  }
+  document.getElementById("arrayInput").style.display = "block";
+}
+
+function performBinarySearch() {
+  const key = parseInt(document.getElementById("searchKey").value);
+  let left = 0;
+  let right = array.length - 1;
+  let found = false;
+
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+    if (array[mid] === key) {
+      document.getElementById("searchResult").textContent = `FOUND at index ${mid}.`;
+      found = true;
+      break;
+    } else if (array[mid] < key) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+  }
+
+  if (!found) {
+    document.getElementById("searchResult").textContent = "NOT FOUND.";
+  }
+}
+</script>
+
+</body>
+</html>
