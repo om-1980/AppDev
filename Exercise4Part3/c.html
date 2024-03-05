@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Three-Letter Words Generator</title>
+</head>
+<body>
+<h1>Three-Letter Words Generator</h1>
+
+<label for="fiveLetterWord">Enter a five-letter word:</label>
+<input type="text" id="fiveLetterWord">
+<button onclick="generateThreeLetterWords()">Generate Words</button>
+
+<div id="output"></div>
+
+<script>
+function generateThreeLetterWords() {
+  const fiveLetterWord = document.getElementById("fiveLetterWord").value.trim();
+  
+  if (fiveLetterWord.length !== 5) {
+    alert("Please enter a five-letter word.");
+    return;
+  }
+
+  const threeLetterWords = [];
+
+  for (let i = 0; i < 5; i++) {
+    for (let j = 0; j < 5; j++) {
+      for (let k = 0; k < 5; k++) {
+        if (i !== j && i !== k && j !== k) {
+          const threeLetterWord = fiveLetterWord[i] + fiveLetterWord[j] + fiveLetterWord[k];
+          if (!threeLetterWords.includes(threeLetterWord)) {
+            threeLetterWords.push(threeLetterWord);
+          }
+        }
+      }
+    }
+  }
+
+  const outputDiv = document.getElementById("output");
+  outputDiv.innerHTML = "<h2>Three-Letter Words</h2>";
+  outputDiv.innerHTML += "<p>" + threeLetterWords.join(", ") + "</p>";
+}
+</script>
+
+</body>
+</html>
