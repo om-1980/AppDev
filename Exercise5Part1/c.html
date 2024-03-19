@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mouse Image Loader</title>
+<style>
+  /* Styling for the images */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: none; /* Initially hide images */
+  }
+
+  /* Styling for the container */
+  .image-container {
+    position: relative;
+    width: 100vw; /* Full width of the viewport */
+    height: 100vh; /* Full height of the viewport */
+  }
+</style>
+</head>
+<body>
+<!-- Container for the images -->
+<div class="image-container">
+  <!-- Image to load when mouse is over the page -->
+  <img id="imageOnHover" src="path/to/image1.jpg" alt="Image on hover">
+
+  <!-- Image to load when mouse is not over the page -->
+  <img id="imageOnLeave" src="path/to/image2.jpg" alt="Image on leave">
+</div>
+
+<script>
+  // Function to load image when mouse is over the page
+  function loadImageOnHover() {
+    const imageOnHover = document.getElementById('imageOnHover');
+    imageOnHover.style.display = 'block';
+  }
+
+  // Function to load image when mouse leaves the page
+  function loadImageOnLeave() {
+    const imageOnLeave = document.getElementById('imageOnLeave');
+    imageOnLeave.style.display = 'block';
+  }
+
+  // Function to hide images when mouse is not over the page
+  function hideImages() {
+    const imageOnHover = document.getElementById('imageOnHover');
+    const imageOnLeave = document.getElementById('imageOnLeave');
+    imageOnHover.style.display = 'none';
+    imageOnLeave.style.display = 'none';
+  }
+
+  // Add event listeners to load images based on mouse actions
+  document.addEventListener('mouseover', loadImageOnHover);
+  document.addEventListener('mouseleave', loadImageOnLeave);
+  document.addEventListener('mouseenter', hideImages); // Hide images initially
+
+  // Prevent right-click context menu on images
+  document.querySelectorAll('img').forEach(img => {
+    img.addEventListener('contextmenu', e => {
+      e.preventDefault();
+    });
+  });
+</script>
+</body>
+</html>
