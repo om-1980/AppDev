@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mouse Click Event</title>
+</head>
+<body>
+<!-- Content of the page -->
+<h1>Click anywhere on the page</h1>
+<p>Hold SHIFT or CTRL keys during the click.</p>
+
+<script>
+  // Function to handle the click event
+  function handleClickEvent(event) {
+    let message = 'Click event occurred';
+    if (event.shiftKey) {
+      message += '\nSHIFT key was held during the click';
+    }
+    if (event.ctrlKey) {
+      message += `\nElement Name: ${event.target.tagName}`;
+    }
+    alert(message);
+  }
+
+  // Add event listener for click event on the whole document
+  document.addEventListener('click', handleClickEvent);
+</script>
+</body>
+</html>
