@@ -1,57 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mouse Movement Tracker</title>
-<style>
-  /* Styling for the image */
-  img {
-    max-width: 100%;
-    height: auto;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
 
-  /* Styling for the tooltip */
-  .tooltip {
-    position: fixed;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    display: none;
-  }
-</style>
+    #movingText, #movableImage {
+      position: absolute;
+    }
+  </style>
+  <title>Mouse Tracking</title>
 </head>
 <body>
-<!-- Image on the web page -->
-<img src="path/to/your/image.jpg" alt="Image">
-
-<!-- Tooltip to display element name and coordinates -->
-<div id="tooltip" class="tooltip"></div>
 
 <script>
-  // Function to show tooltip with element name and coordinates
-  function showTooltip(event) {
-    const tooltip = document.getElementById('tooltip');
-    const elementName = event.target.nodeName;
+  function displayMouseCoordinates(event) {
     const mouseX = event.clientX;
     const mouseY = event.clientY;
 
-    tooltip.textContent = `${elementName} (${mouseX}, ${mouseY})`;
-    tooltip.style.display = 'block';
-    tooltip.style.left = mouseX + 10 + 'px'; // Add some offset from mouse pointer
-    tooltip.style.top = mouseY + 10 + 'px'; // Add some offset from mouse pointer
+    const textElement = document.getElementById('movingText');
+    const imageElement = document.getElementById('movableImage');
+
+    // Update text position and content
+    textElement.style.left = mouseX + 'px';
+    textElement.style.top = mouseY + 'px';
+    textElement.innerHTML = `Mouse Coordinates: (${mouseX}, ${mouseY})`;
+
+    // Update image position
+    imageElement.style.left = (mouseX - 50) + 'px'; // Adjust for image width
+    imageElement.style.top = (mouseY - 50) + 'px'; // Adjust for image height
   }
 
-  // Function to hide tooltip when mouse leaves the element
-  function hideTooltip() {
-    const tooltip = document.getElementById('tooltip');
-    tooltip.style.display = 'none';
-  }
-
-  // Add event listeners to track mouse movement
-  document.addEventListener('mousemove', showTooltip);
-  document.addEventListener('mouseleave', hideTooltip);
+  document.addEventListener('mousemove', displayMouseCoordinates);
 </script>
+
+<p id="movingText"></p>
+
+
+<img id="movableImage" src="img.jpg" alt="Movable Image" width="100" height="100">
+
 </body>
 </html>
