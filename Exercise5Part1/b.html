@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mouse Movement Tracker</title>
+<style>
+  /* Styling for the image */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Styling for the tooltip */
+  .tooltip {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: none;
+  }
+</style>
+</head>
+<body>
+<!-- Image on the web page -->
+<img src="path/to/your/image.jpg" alt="Image">
+
+<!-- Tooltip to display element name and coordinates -->
+<div id="tooltip" class="tooltip"></div>
+
+<script>
+  // Function to show tooltip with element name and coordinates
+  function showTooltip(event) {
+    const tooltip = document.getElementById('tooltip');
+    const elementName = event.target.nodeName;
+    const mouseX = event.clientX;
+    const mouseY = event.clientY;
+
+    tooltip.textContent = `${elementName} (${mouseX}, ${mouseY})`;
+    tooltip.style.display = 'block';
+    tooltip.style.left = mouseX + 10 + 'px'; // Add some offset from mouse pointer
+    tooltip.style.top = mouseY + 10 + 'px'; // Add some offset from mouse pointer
+  }
+
+  // Function to hide tooltip when mouse leaves the element
+  function hideTooltip() {
+    const tooltip = document.getElementById('tooltip');
+    tooltip.style.display = 'none';
+  }
+
+  // Add event listeners to track mouse movement
+  document.addEventListener('mousemove', showTooltip);
+  document.addEventListener('mouseleave', hideTooltip);
+</script>
+</body>
+</html>
