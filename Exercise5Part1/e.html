@@ -1,30 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mouse Click Event</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Click Event Handler</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      cursor: pointer; /* Set cursor to pointer for better user experience */
+    }
+  </style>
 </head>
 <body>
-<!-- Content of the page -->
-<h1>Click anywhere on the page</h1>
-<p>Hold SHIFT or CTRL keys during the click.</p>
 
 <script>
-  // Function to handle the click event
-  function handleClickEvent(event) {
-    let message = 'Click event occurred';
+  function handleClick(event) {
+    var message = 'Mouse Clicked!\n';
+
+    // Check if SHIFT key was held during the click
     if (event.shiftKey) {
-      message += '\nSHIFT key was held during the click';
+      message += 'SHIFT key held\n';
+      message += '\nEvent Name: ' + event.type;
     }
+
+    // Check if CTRL key was held during the click
     if (event.ctrlKey) {
-      message += `\nElement Name: ${event.target.tagName}`;
+      // Get the element that triggered the event
+      var elementName = event.target.tagName;
+      message += 'CTRL key held\n';
+      message += 'Element: ' + elementName + '\n';
     }
+
+    // Display the alert message
     alert(message);
   }
 
-  // Add event listener for click event on the whole document
-  document.addEventListener('click', handleClickEvent);
+  // Attach the click event handler to the document
+  document.addEventListener('click', handleClick);
 </script>
+
 </body>
 </html>
