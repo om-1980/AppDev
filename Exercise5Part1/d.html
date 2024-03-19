@@ -1,62 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>XHTML Elements Display</title>
-<style>
-  /* Styling for the output */
-  #output {
-    font-family: Arial, sans-serif;
-    padding: 10px;
-    border: 1px solid #ccc;
-    margin: 20px;
-    max-width: 600px;
-    overflow-wrap: break-word;
-  }
-</style>
+  
+  <title>Display HTML Elements</title>
+  
 </head>
 <body>
-<!-- Output container for displaying XHTML elements -->
-<div id="output"></div>
 
 <script>
-  // Function to display XHTML elements using all and child collections
-  function displayXHTMLElements() {
-    const outputContainer = document.getElementById('output');
-    let outputHTML = '<h2>XHTML Elements:</h2>';
+  function displayAllElements() {
+    var allElements = document.all;
 
-    // Using document.all collection to get all elements
-    outputHTML += '<h3>Using document.all collection:</h3>';
-    for (let i = 0; i < document.all.length; i++) {
-      const element = document.all[i];
-      outputHTML += `<p>${element.tagName.toLowerCase()} ${getAttributesString(element)}</p>`;
+    // Create a div to display the elements
+    var displayDiv = document.createElement('div');
+    displayDiv.style.padding = '10px';
+    displayDiv.style.border = '1px solid #ccc';
+
+    // Iterate through all elements and display their tag names
+    for (var i = 0; i < allElements.length; i++) {
+      var element = allElements[i];
+      var elementInfo = document.createElement('p');
+      elementInfo.textContent = 'Element ' + (i + 1) + ': ' + element.tagName;
+      displayDiv.appendChild(elementInfo);
     }
 
-    // Using document.body.childNodes collection to get child elements
-    outputHTML += '<h3>Using document.body.childNodes collection:</h3>';
-    for (let i = 0; i < document.body.childNodes.length; i++) {
-      const element = document.body.childNodes[i];
-      if (element.nodeType === 1) { // Check if it's an element node
-        outputHTML += `<p>${element.tagName.toLowerCase()} ${getAttributesString(element)}</p>`;
-      }
-    }
-
-    outputContainer.innerHTML = outputHTML;
+    // Append the display div to the body
+    document.body.appendChild(displayDiv);
   }
 
-  // Function to get attributes string of an element
-  function getAttributesString(element) {
-    let attributesString = '';
-    const attributes = element.attributes;
-    for (let i = 0; i < attributes.length; i++) {
-      attributesString += `${attributes[i].name}="${attributes[i].value}" `;
-    }
-    return attributesString.trim();
-  }
-
-  // Call the function to display XHTML elements
-  displayXHTMLElements();
+  // Call the function when the window is fully loaded
+  window.onload = displayAllElements;
 </script>
+
 </body>
 </html>
