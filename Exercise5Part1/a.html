@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Text Animation</title>
+<style>
+  /* Styling for the moving text */
+  .moving-text {
+    position: absolute;
+    font-size: 16px;
+    color: black;
+    font-family: Arial, sans-serif;
+  }
+</style>
+</head>
+<body>
+<!-- Container for the moving text -->
+<div id="textContainer" class="moving-text">Hello, DHTML!</div>
+
+<script>
+  // Function to generate random color
+  function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+  // Function to generate random font size
+  function getRandomSize(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+  // Function to move the text randomly
+  function moveText() {
+    const textElem = document.getElementById('textContainer');
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+    const textWidth = textElem.offsetWidth;
+    const textHeight = textElem.offsetHeight;
+
+    // Generate random position within the screen
+    const posX = Math.floor(Math.random() * (screenWidth - textWidth));
+    const posY = Math.floor(Math.random() * (screenHeight - textHeight));
+
+    // Set random color and font size
+    textElem.style.color = getRandomColor();
+    textElem.style.fontSize = getRandomSize(12, 24) + 'px';
+
+    // Move the text to the random position
+    textElem.style.left = posX + 'px';
+    textElem.style.top = posY + 'px';
+  }
+
+  // Move the text initially and start the animation loop
+  moveText();
+  setInterval(moveText, 3000); // Change text position every 3 seconds
+</script>
+</body>
+</html>
